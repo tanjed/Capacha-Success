@@ -1,0 +1,84 @@
+body {
+	background: url(Image/data-up.gi);
+	background-position: center;
+  	background-repeat: no-repeat;
+  	background-size: cover;
+  	height: 100%;
+}
+
+.orginalimage{
+	text-align: center;
+	padding-top: 20px;
+}
+
+.dragzone{
+	height: 310px;
+	width: 320px;
+	border: none;
+	float: left;
+	margin-top: 50px;
+	margin-left: 25%;
+}
+
+.dropzone {
+	height: 210px;
+	width: 220px;
+	border: none;
+	float: left;
+	margin-top: 50px;
+	margin-left: 4%;
+}
+
+.submitzone {
+	height: 300px;
+	width: 300px;
+	border: none;
+	margin-top: 50px;
+	margin-left: 40%
+}
+
+.dropzone > .submit {
+	margin-top: 210px;
+}
+
+.dropzone > .submit > img {
+	margin-right: 20px;
+	margin-left: 20px;
+}
+
+.dragzone > img {
+	margin-bottom: 5px;
+}
+
+.drop1 {
+	height: 100px;
+	width: 100px;
+	border: 1px solid black;
+	/* border-color: yellow; */
+	float: left;
+}
+
+.drop2 {
+	height: 100px;
+	width: 100px;
+	border: 1px solid black;
+	/* border-color: yellow; */
+	float: left;
+}
+
+
+.drop3 {
+	height: 100px;
+	width: 100px;
+	border: 1px solid black;
+	/* border-color: yellow; */
+	float: left;
+}
+
+.drop4 {
+	height: 100px;
+	width: 100px;
+	border: 1px solid black;
+	/* border-color: yellow; */
+	float: left;
+}

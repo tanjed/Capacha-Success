@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Drag & Drop</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<link rel="stylesheet" href="dragndrop.css">
+</head>
+<body style="background-color: #76b5a5">
+
+	
+
+	<div class="orginalimage">
+		<img src="Image/A/A.png" alt="Main Image" width="175" height="181">
+	</div>
+
+	<div class="container">
+		<div class="row">
+			<div class="col-md-3">
+				<div class="col-md-12">
+					<h1><time>00:00:00</time></h1>
+					<div id="time_control_buttons">
+						<button id="start">Start</button>
+						<button id="stop">Stop</button>
+						<button id="clear">Clear</button>
+					</div>	
+				</div>
+
+				<div class="col-md-12" style="margin-top: 15%;">
+						<h4>Name: <span id="name">0</span></h4>
+				</div>
+				<div class="col-md-12">
+							<h4>Age: <span id="age">0</span></h4>
+				</div>
+				<div class="col-md-12">
+							<h4>Type: <span id="type">0</span></h4>
+				</div>
+				<div class="col-md-12">
+						<h4>CAPTCHA Type: <span id="capacha_type">0</span></h4>
+				</div>
+				<div class="col-md-12">
+						<h4>Mobility Problem: <span id="mobility_problem">0</span></h4>
+				</div>
+				<div class="col-md-12">
+						<h4>Vision Problem: <span id="vision_problem">0</span></h4>
+				</div>
+
+			</div>
+
+	<div class="col-md-9">
+
+	<div class="dragzone">
+		<img src="Image/B/sub_image_B/b1.png" id="image1" alt="Drag Image" width="100" height="100" ondragstart="dragStart(event)" data-score=5>
+		<img src="Image/A/sub_image_A/a2.png" id="image2" alt="Drag Image" width="100" height="100" ondragstart="dragStart(event)" data-score=2>
+		<img src="Image/C/sub_image_C/c4.png" id="image3" alt="Drag Image" width="100" height="100" ondragstart="dragStart(event)" data-score=6>
+		<img src="Image/A/sub_image_A/a4.png" id="image4" alt="Drag Image" width="100" height="100" ondragstart="dragStart(event)" data-score=4>
+		<img src="Image/A/sub_image_A/a3.png" id="image5" alt="Drag Image" width="100" height="100" ondragstart="dragStart(event)" data-score=3>
+		<img src="Image/D/sub_image_D/d1.png" id="image6" alt="Drag Image" width="100" height="100" ondragstart="dragStart(event)" data-score=8>
+		<img src="Image/D/sub_image_D/d3.png" id="image7" alt="Drag Image" width="100" height="100" ondragstart="dragStart(event)" data-score=7>
+		<img src="Image/A/sub_image_A/a1.png" id="image8" alt="Drag Image" width="100" height="100" ondragstart="dragStart(event)" data-score=1>
+		<img src="Image/E/sub_image_E/e1.png" id="image9" alt="Drag Image" width="100" height="100" ondragstart="dragStart(event)" data-score=9>
+	</div>
+
+
+	<div class="dropzone">
+		<div class="drop1" id="drop-div-1" ondragover="allowDrop(event)" ondrop="drop(event)"></div>
+		<div class="drop2" id="drop-div-2" ondragover="allowDrop(event)" ondrop="drop(event)"></div>
+		<div class="drop3" id="drop-div-3" ondragover="allowDrop(event)" ondrop="drop(event)"></div>
+		<div class="drop4" id="drop-div-4" ondragover="allowDrop(event)" ondrop="drop(event)"></div>
+		<div class="submit">
+			<img src="Image/retry.png" alt="Retry Image" width="60" height="60" onclick="retryCaptcha()">
+			<button type="button" class="btn btn-success" onclick="checkResult()">Submit</button>
+		</div>
+		
+	</div>
+
+</div>
+		</div>
+	</div>
+
+
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+	<script type="text/javascript" src="dragndrop.js"></script>
+
+
+	<script type="text/javascript">
+		function retryCaptcha()
+		{
+			window.location = window.location.href + '/../b.html';
+		}
+		function checkResult()
+		{
+			let div_1 = $('#drop-div-1').children(),
+				div_2 = $('#drop-div-2').children(),
+				div_3 = $('#drop-div-3').children(),
+				div_4 = $('#drop-div-4').children();
+
+			if (div_1.data('score') == 1 && 
+				div_2.data('score') == 2 && 
+				div_3.data('score') == 3 && 
+				div_4.data('score') == 4) {
+				stopWatchstop();
+				alert("Successful"+hours+minutes+seconds);
+				stopWatchreset();
+				
+			}
+			else {
+				alert("CAPTCHA not matched. Try Again !!");
+			}
+		}
+	</script>
+	<script src="./external/stopwatch.js"></script>
+	<script>
+		$( document ).ready(function() {
+			$('#time_control_buttons').hide();
+  			stopWatchstart();
+		});
+		
+		var url_params =  new URLSearchParams(window.location.search);
+
+		for(var key of url_params.keys()) { 
+		  setParams(key);
+		}
+
+		function getParams(param){
+			return url_params.get(param);
+
+		}
+		function setParams(id){
+			return $("#"+id).html(getParams(id));
+		}
+	</script>
+</body>
+</html>

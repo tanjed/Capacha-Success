@@ -1,0 +1,9 @@
+1. Submit e click korle timer auto start hbe
+
+2. Submit successfull hole submit e click korle timer stop hbe and pop up hbe jekhane "Successfull" and kotobar try korce seta dekhabe.
+
+3. submit jodi unsuccessfull hoy tbe kono pop up drkar nai. just captcha image change hoye jabe. retry te click korle 1 ta unsuccessfull try count hbe.
+
+4. jotokhon na submit successfull hbe totokhon timer count kora stop korbe na.
+
+5. a & b easy, aa & bb mid, aaa & bbb hard
