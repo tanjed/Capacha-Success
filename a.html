@@ -84,6 +84,7 @@
 	<script type="text/javascript" src="dragndrop.js"></script>
 
 
+
 	<script type="text/javascript">
 		function retryCaptcha()
 		{
@@ -101,8 +102,16 @@
 				div_3.data('score') == 3 && 
 				div_4.data('score') == 4) {
 				stopWatchstop();
-				alert("Successful"+hours+minutes+seconds);
+
+				var time  = {
+					'seconds':seconds.toString(),
+					'minutes':minutes.toString(),
+					'hours':hours.toString()
+				}
+				alert("Successful");
 				stopWatchreset();
+
+				setLocal('time',time);
 				window.location.href = 'result.html';
 				
 			}
@@ -133,14 +142,18 @@
 		// function setParams(id){
 		// 	return $("#"+id).html(getParams(id));
 		// }
+		function setLocal(key,value){
+			return window.localStorage.setItem(key,JSON.stringify(value));
+		}
 		
 		function getLocal(key){
 			var data = window.localStorage.getItem(key);
 			return JSON.parse(data);
 		}
-		function setData(user){
-			for( var index in user){
-				$("#"+index).html(user[index]);
+		function setData(key){
+			for( var index in key){
+				$("#"+index).html(key[index]);
+				console.log(key[id]);
 			}
 		}
 	</script>
