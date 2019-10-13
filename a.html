@@ -49,15 +49,15 @@
 	<div class="col-md-9">
 
 	<div class="dragzone">
-		<img src="Image/B/sub_image_B/b1.png" id="image1" alt="Drag Image" width="100" height="100" ondragstart="dragStart(event)" data-score=5>
-		<img src="Image/A/sub_image_A/a2.png" id="image2" alt="Drag Image" width="100" height="100" ondragstart="dragStart(event)" data-score=2>
-		<img src="Image/C/sub_image_C/c4.png" id="image3" alt="Drag Image" width="100" height="100" ondragstart="dragStart(event)" data-score=6>
-		<img src="Image/A/sub_image_A/a4.png" id="image4" alt="Drag Image" width="100" height="100" ondragstart="dragStart(event)" data-score=4>
-		<img src="Image/A/sub_image_A/a3.png" id="image5" alt="Drag Image" width="100" height="100" ondragstart="dragStart(event)" data-score=3>
-		<img src="Image/D/sub_image_D/d1.png" id="image6" alt="Drag Image" width="100" height="100" ondragstart="dragStart(event)" data-score=8>
-		<img src="Image/D/sub_image_D/d3.png" id="image7" alt="Drag Image" width="100" height="100" ondragstart="dragStart(event)" data-score=7>
-		<img src="Image/A/sub_image_A/a1.png" id="image8" alt="Drag Image" width="100" height="100" ondragstart="dragStart(event)" data-score=1>
-		<img src="Image/E/sub_image_E/e1.png" id="image9" alt="Drag Image" width="100" height="100" ondragstart="dragStart(event)" data-score=9>
+		<img src="Image/B/sub_image_B/b1.png" id="image1" alt="Drag Image" width="100" height="100" ondragstart="dragStart(event)" ondrag="dragging(event)" data-score=5>
+		<img src="Image/A/sub_image_A/a2.png" id="image2" alt="Drag Image" width="100" height="100" ondragstart="dragStart(event)" ondrag="dragging(event)" data-score=2>
+		<img src="Image/C/sub_image_C/c4.png" id="image3" alt="Drag Image" width="100" height="100" ondragstart="dragStart(event)" ondrag="dragging(event)" data-score=6>
+		<img src="Image/A/sub_image_A/a4.png" id="image4" alt="Drag Image" width="100" height="100" ondragstart="dragStart(event)" ondrag="dragging(event)" data-score=4>
+		<img src="Image/A/sub_image_A/a3.png" id="image5" alt="Drag Image" width="100" height="100" ondragstart="dragStart(event)" ondrag="dragging(event)" data-score=3>
+		<img src="Image/D/sub_image_D/d1.png" id="image6" alt="Drag Image" width="100" height="100" ondragstart="dragStart(event)" ondrag="dragging(event)" data-score=8>
+		<img src="Image/D/sub_image_D/d3.png" id="image7" alt="Drag Image" width="100" height="100" ondragstart="dragStart(event)" ondrag="dragging(event)" data-score=7>
+		<img src="Image/A/sub_image_A/a1.png" id="image8" alt="Drag Image" width="100" height="100" ondragstart="dragStart(event)" ondrag="dragging(event)" data-score=1>
+		<img src="Image/E/sub_image_E/e1.png" id="image9" alt="Drag Image" width="100" height="100" ondragstart="dragStart(event)" ondrag="dragging(event)" data-score=9>
 	</div>
 
 
@@ -103,6 +103,7 @@
 				stopWatchstop();
 				alert("Successful"+hours+minutes+seconds);
 				stopWatchreset();
+				window.location.href = 'result.html';
 				
 			}
 			else {
@@ -112,23 +113,35 @@
 	</script>
 	<script src="./external/stopwatch.js"></script>
 	<script>
+		
 		$( document ).ready(function() {
 			$('#time_control_buttons').hide();
   			stopWatchstart();
+  			setData(getLocal('user'));
 		});
 		
-		var url_params =  new URLSearchParams(window.location.search);
+		//var url_params =  new URLSearchParams(window.location.search);
 
-		for(var key of url_params.keys()) { 
-		  setParams(key);
+		// for(var key of url_params.keys()) { 
+		//   setParams(key);
+		// }
+
+		// function getParams(param){
+		// 	return url_params.get(param);
+
+		// }
+		// function setParams(id){
+		// 	return $("#"+id).html(getParams(id));
+		// }
+		
+		function getLocal(key){
+			var data = window.localStorage.getItem(key);
+			return JSON.parse(data);
 		}
-
-		function getParams(param){
-			return url_params.get(param);
-
-		}
-		function setParams(id){
-			return $("#"+id).html(getParams(id));
+		function setData(user){
+			for( var index in user){
+				$("#"+index).html(user[index]);
+			}
 		}
 	</script>
 </body>
