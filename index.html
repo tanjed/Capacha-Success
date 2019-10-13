@@ -80,7 +80,7 @@
   </div> 
   <div class="form-group row">
     <div class="offset-4 col-8">
-      <button name="submit" id="sa" type="submit" class="btn btn-primary"  >Submit and Start</button>
+      <button name="submit" id="submit" type="submit" class="btn btn-primary"  >Submit and Start</button>
     </div>
   </div>
 </form>
@@ -96,10 +96,10 @@
 
 	</body>
 	<script>
-
-		
-			document.getElementById("sa").addEventListener("click", function(event){
+			
+			document.getElementById("submit").addEventListener("click", function(event){
 				event.preventDefault();
+				clearLocal();
 				
 				var name  = document.getElementById('name').value.trim();
 				var age = document.getElementById('age').value.trim();
@@ -107,17 +107,39 @@
 				var capacha_type = getRadioButtonData('capacha_type');
 				var mobility_problem = getRadioButtonData('mobility_problem');
 				var vision_problem = getRadioButtonData('vision_problem');
-				var queryString = "?name="+name+"&age="+age+"&type="+type+"&capacha_type="+capacha_type+"&mobility_problem="+mobility_problem+"&vision_problem="+vision_problem;
+
+				var value = {'name':name,
+							  'age':age,
+							  'type':(type === 'right_handed')? "Right Handed":"Left Handed",
+							  'capacha_type':capacha_type,
+							  'mobility_problem':mobility_problem,
+							  'vision_problem':vision_problem,
+							}
+
+				setLocal('user',value);
+			
+				
+				//var queryString = "?name="+name+"&age="+age+"&type="+type+"&capacha_type="+capacha_type+"&mobility_problem="+mobility_problem+"&vision_problem="+vision_problem;
 				
 				if(capacha_type == 'easy'){
-					window.location.href = "a.html"+queryString;
+					window.location.href = "a.html";
 				}else if(capacha_type == 'mid'){
-					window.location.href = "aa.html"+queryString;
+					window.location.href = "aa.html";
 				}else{
-					window.location.href = "aaa.html"+queryString;
+					window.location.href = "aaa.html";
 				}
 			
 			});
+
+		function getLocal(){
+
+		}
+		function setLocal(key,value){
+			return window.localStorage.setItem(key,JSON.stringify(value));
+		}
+		function clearLocal(){
+			return window.localStorage.clear();
+		}
 		
 		
 
