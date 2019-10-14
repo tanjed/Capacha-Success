@@ -95,6 +95,7 @@
 </div>
 
 	</body>
+	<script src="personal_lib.js"></script>
 	<script>
 			
 			document.getElementById("submit").addEventListener("click", function(event){
@@ -110,16 +111,13 @@
 
 				var value = {'name':name,
 							  'age':age,
-							  'type':(type === 'right_handed')? "Right Handed":"Left Handed",
+							  'type':type,
 							  'capacha_type':capacha_type,
 							  'mobility_problem':mobility_problem,
 							  'vision_problem':vision_problem,
 							}
 
 				setLocal('user',value);
-			
-				
-				//var queryString = "?name="+name+"&age="+age+"&type="+type+"&capacha_type="+capacha_type+"&mobility_problem="+mobility_problem+"&vision_problem="+vision_problem;
 				
 				if(capacha_type == 'easy'){
 					window.location.href = "a.html";
@@ -130,25 +128,4 @@
 				}
 			
 			});
-
-		function getLocal(){
-
-		}
-		function setLocal(key,value){
-			return window.localStorage.setItem(key,JSON.stringify(value));
-		}
-		function clearLocal(){
-			return window.localStorage.clear();
-		}
-		
-		
-
-		function getRadioButtonData(attName){
-
-			var element = document.getElementsByName(attName);
-			for(i = 0; i < element.length; i++) { 
-                if(element[i].checked) 
-              		return element[i].value; 
-            } 	
-		}
 	</script>

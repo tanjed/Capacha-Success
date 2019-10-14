@@ -125,6 +125,7 @@
 		}
 	</script>
 	<script src="./external/stopwatch.js"></script>
+	<script src="personal_lib.js"></script>
 	<script>
 		
 		$( document ).ready(function() {
@@ -132,23 +133,6 @@
   			stopWatchstart();
   			setData(getLocal('user'));
 		});
-		
-		function setLocal(key,value){
-			return window.localStorage.setItem(key,JSON.stringify(value));
-		}
-		
-		function getLocal(key){
-			var data = window.localStorage.getItem(key);
-			return JSON.parse(data);
-		}
-		function clearLocal(key){
-			return window.localStorage.removeItem(key);
-		}
-		function setData(key){
-			for( var index in key){
-				$("#"+index).html(key[index]);
-			}
-		}
 	</script>
 </body>
 </html>

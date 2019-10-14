@@ -7,18 +7,22 @@
 </head>
 <body style="background-color: #76b5a5">
 
+	
+
 	<div class="orginalimage">
 		<img src="Image/B/B.png" alt="Main Image" width="175" height="181">
 	</div>
-	
+
 	<div class="container">
 		<div class="row">
 			<div class="col-md-3">
 				<div class="col-md-12">
-						<h1><time>00:00:00</time></h1>
+					<h1><time>00:00:00</time></h1>
+					<div id="time_control_buttons">
 						<button id="start">Start</button>
 						<button id="stop">Stop</button>
 						<button id="clear">Clear</button>
+					</div>	
 				</div>
 
 				<div class="col-md-12" style="margin-top: 15%;">
@@ -31,13 +35,13 @@
 							<h4>Type: <span id="type">0</span></h4>
 				</div>
 				<div class="col-md-12">
-						<h4>CAPTCHA Type: <span id="level">0</span></h4>
+						<h4>CAPTCHA Type: <span id="capacha_type">0</span></h4>
 				</div>
 				<div class="col-md-12">
-						<h4>Mobility Problem: <span id="level">0</span></h4>
+						<h4>Mobility Problem: <span id="mobility_problem">0</span></h4>
 				</div>
 				<div class="col-md-12">
-						<h4>Vision Problem: <span id="level">0</span></h4>
+						<h4>Vision Problem: <span id="vision_problem">0</span></h4>
 				</div>
 
 			</div>
@@ -45,15 +49,15 @@
 	<div class="col-md-9">
 
 	<div class="dragzone">
-		<img src="Image/B/sub_image_B/b1.png" id="image1" alt="Drag Image" width="100" height="100" ondragstart="dragStart(event)" data-score=1>
-		<img src="Image/A/sub_image_A/a2.png" id="image2" alt="Drag Image" width="100" height="100" ondragstart="dragStart(event)" data-score=5>
-		<img src="Image/C/sub_image_C/c4.png" id="image3" alt="Drag Image" width="100" height="100" ondragstart="dragStart(event)" data-score=6>
-		<img src="Image/A/sub_image_A/a4.png" id="image4" alt="Drag Image" width="100" height="100" ondragstart="dragStart(event)" data-score=7>
-		<img src="Image/B/sub_image_B/b4.png" id="image5" alt="Drag Image" width="100" height="100" ondragstart="dragStart(event)" data-score=4>
-		<img src="Image/D/sub_image_D/d1.png" id="image6" alt="Drag Image" width="100" height="100" ondragstart="dragStart(event)" data-score=8>
-		<img src="Image/D/sub_image_D/d3.png" id="image7" alt="Drag Image" width="100" height="100" ondragstart="dragStart(event)" data-score=9>
-		<img src="Image/B/sub_image_B/b2.png" id="image8" alt="Drag Image" width="100" height="100" ondragstart="dragStart(event)" data-score=2>
-		<img src="Image/B/sub_image_B/b3.png" id="image9" alt="Drag Image" width="100" height="100" ondragstart="dragStart(event)" data-score=3>
+		<img src="Image/B/sub_image_B/b1.png" id="image1" alt="Drag Image" width="100" height="100" ondragstart="dragStart(event)" ondrag="dragging(event)" data-score=1>
+		<img src="Image/A/sub_image_A/a2.png" id="image2" alt="Drag Image" width="100" height="100" ondragstart="dragStart(event)" ondrag="dragging(event)" data-score=5>
+		<img src="Image/C/sub_image_C/c4.png" id="image3" alt="Drag Image" width="100" height="100" ondragstart="dragStart(event)" ondrag="dragging(event)" data-score=6>
+		<img src="Image/A/sub_image_A/a4.png" id="image4" alt="Drag Image" width="100" height="100" ondragstart="dragStart(event)" ondrag="dragging(event)" data-score=7>
+		<img src="Image/B/sub_image_B/b4.png" id="image5" alt="Drag Image" width="100" height="100" ondragstart="dragStart(event)" ondrag="dragging(event)" data-score=4>
+		<img src="Image/D/sub_image_D/d1.png" id="image6" alt="Drag Image" width="100" height="100" ondragstart="dragStart(event)" ondrag="dragging(event)" data-score=8>
+		<img src="Image/D/sub_image_D/d3.png" id="image7" alt="Drag Image" width="100" height="100" ondragstart="dragStart(event)" ondrag="dragging(event)" data-score=9>
+		<img src="Image/B/sub_image_B/b2.png" id="image8" alt="Drag Image" width="100" height="100" ondragstart="dragStart(event)" ondrag="dragging(event)" data-score=2>
+		<img src="Image/B/sub_image_B/b3.png" id="image9" alt="Drag Image" width="100" height="100" ondragstart="dragStart(event)" ondrag="dragging(event)" data-score=3>
 	</div>
 
 
@@ -95,13 +99,38 @@
 				div_2.data('score') == 2 && 
 				div_3.data('score') == 3 && 
 				div_4.data('score') == 4) {
+				stopWatchstop();
+
+				var time  = {
+					'seconds':seconds.toString(),
+					'minutes':minutes.toString(),
+					'hours':hours.toString()
+				}
 				alert("Successful");
+				stopWatchreset();
+
+				setLocal('time',time);
+				window.location.href = 'result.html';
+				
 			}
 			else {
+				for(var i = 1; i<=4 ; i++){
+					clearLocal('coordinate'+i);
+				}
 				alert("CAPTCHA not matched. Try Again !!");
+				retryCaptcha();
 			}
 		}
 	</script>
 	<script src="./external/stopwatch.js"></script>
+	<script src="personal_lib.js"></script>
+	<script>
+		
+		$( document ).ready(function() {
+			$('#time_control_buttons').hide();
+  			stopWatchstart();
+  			setData(getLocal('user'));
+		});
+	</script>
 </body>
 </html>
