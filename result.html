@@ -10,7 +10,7 @@
 
 	<div class="result text-center" style="margin-bottom: 1%">
 		<h3 style="color: white; margin-bottom: 1%;">Result Summary</h3>
-		<button type="button" class="btn btn-warning" style="margin-bottom: 1%" onclick="exportTableToExcel('resultTable')">Export Data</button>
+		<button type="button" id="export" class="btn btn-warning" style="margin-bottom: 1%">Export Data</button>
 	</div>
 
 <div class="container">
@@ -73,8 +73,14 @@
   <script type="text/javascript">
 
    setData(getLocal('user'));
-   $('#user_name').html(getLocal('user').name);
+
+   var user_name = getLocal('user').name;
+   $('#user_name').html(user_name);
    setData(getLocal('time'));
+
+   $("#export").click(function(){
+      exportTableToExcel('resultTable', user_name );
+  });
 
 
   
