@@ -1,5 +1,7 @@
 var id, id1, id2, id3;
 var co_ordinates = [];
+var intervel = 0;
+var drop_count = 0;
 
 function allowDrop(ev)
 {
@@ -9,23 +11,32 @@ function allowDrop(ev)
 function dragStart(ev)
 {
 	id = ev.target.id;
-	getPositions(id);
+	
 }
 
-function drop(ev)
-{	
+function drop(ev){	
+
+	drop_count++;
 	ev.target.append(document.getElementById(id));
-	getPositions(id);
-	console.log(co_ordinates);
-
-}
-function getPositions(id){
-
-	
+	pushArray('coordinate'+drop_count);	
+	console.log(localStorage);
 	
 }
+
 function dragging(ev){
 	var x = event.clientX;     // Get the horizontal coordinate
 	var y = event.clientY;     // Get the vertical coordinate
 	co_ordinates.push({"x":x , "y":y});
+	intervel = elementSpacing(co_ordinates.length);
+}
+function elementSpacing(length){
+	return Math.ceil(length/15);
+}
+function pushArray(key){
+	var co_ordinate_points = [];
+	for(var i = 0; i<co_ordinates.length; i+=intervel ){
+		co_ordinate_points.push(co_ordinates[i]);
+	}
+	return window.localStorage.setItem(key,JSON.stringify(co_ordinate_points));
+	
 }

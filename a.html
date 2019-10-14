@@ -116,7 +116,11 @@
 				
 			}
 			else {
+				for(var i = 1; i<=4 ; i++){
+					clearLocal('coordinate'+i);
+				}
 				alert("CAPTCHA not matched. Try Again !!");
+				retryCaptcha();
 			}
 		}
 	</script>
@@ -129,19 +133,6 @@
   			setData(getLocal('user'));
 		});
 		
-		//var url_params =  new URLSearchParams(window.location.search);
-
-		// for(var key of url_params.keys()) { 
-		//   setParams(key);
-		// }
-
-		// function getParams(param){
-		// 	return url_params.get(param);
-
-		// }
-		// function setParams(id){
-		// 	return $("#"+id).html(getParams(id));
-		// }
 		function setLocal(key,value){
 			return window.localStorage.setItem(key,JSON.stringify(value));
 		}
@@ -150,10 +141,12 @@
 			var data = window.localStorage.getItem(key);
 			return JSON.parse(data);
 		}
+		function clearLocal(key){
+			return window.localStorage.removeItem(key);
+		}
 		function setData(key){
 			for( var index in key){
 				$("#"+index).html(key[index]);
-				console.log(key[id]);
 			}
 		}
 	</script>

@@ -10,15 +10,16 @@
 
 	<div class="result text-center" style="margin-bottom: 1%">
 		<h3 style="color: white; margin-bottom: 1%;">Result Summary</h3>
-		<button type="button" class="btn btn-warning" style="margin-bottom: 1%">Export Data</button>
+		<button type="button" class="btn btn-warning" style="margin-bottom: 1%" onclick="exportTableToExcel('resultTable')">Export Data</button>
 	</div>
 
 <div class="container">
   
 
     Name: <span id="name"></span> || Age:<span id="age"></span> || Type:<span id="type"></span> || CAPTCHA Type:<span id="capacha_type"></span> || Mobility Problem:<span id="mobility_problem"></span> || Vision Problem:<span id="vision_problem"></span> <br><b><i>Time Taken: <span id="seconds"></span> Sec</i></b> <br> <br>
-		<table class="table table-dark" id="#resultTable">
+		<table class="table table-dark" id="resultTable">
   <thead>
+    <tr><td colspan="17" style="text-align: center;display: none;">Sabbir</td></tr>
     <tr>
       <th scope="col">Drag</th>
       <th scope="col">Position</th>
@@ -39,9 +40,9 @@
       <th scope="col">15</th>
     </tr>
   </thead>
-  <tbody>
-    <tr>
-      <th scope="row">1</th>
+  <tbody id="tbody">
+    <!-- <tr>
+      <td>1</td>
       <td>x  <br> y</td>
       <td>0  <br> 0</td>
       <td>2  <br> 4</td>
@@ -58,7 +59,7 @@
       <td>24 <br> 26</td>
       <td>26 <br> 28</td>
       <td>28 <br> 30</td>
-    </tr>
+    </tr> -->
   </tbody>
 </table>
 <br>
@@ -71,8 +72,22 @@
   <script type="text/javascript">
    setData(getLocal('user'));
    setData(getLocal('time'));
+
+
+  
+   for(var i = 1; i<=4; i++){
+    var coordinates = getLocal('coordinate'+i);
+    var temp = $("#tbody").append($('<tr>'));
+        temp.append($('<td>').html(i)).append('<td>x <br> y</td>');
+      for(var j=0;j<15;j++){
+          if(!!coordinates[j]){
+            temp.append($('<td>').html(coordinates[j].x+'<br>'+coordinates[j].y));
+          }else{
+            temp.append($('<td>').html(''));
+          }
+      }
+   }
    
-    
   
     function setData(key){
       for( var index in key){
@@ -84,6 +99,37 @@
       var data = window.localStorage.getItem(key);
       return JSON.parse(data);
     }
+    function exportTableToExcel(tableID, filename = ''){
+      console.log('Hello');
+    var downloadLink;
+    var dataType = 'application/vnd.ms-excel';
+    var tableSelect = document.getElementById(tableID);
+    var tableHTML = tableSelect.outerHTML.replace(/ /g, '%20');
+    
+    // Specify file name
+    filename = filename?filename+'.xls':'excel_data.xls';
+    
+    // Create download link element
+    downloadLink = document.createElement("a");
+    
+    document.body.appendChild(downloadLink);
+    
+    if(navigator.msSaveOrOpenBlob){
+        var blob = new Blob(['\ufeff', tableHTML], {
+            type: dataType
+        });
+        navigator.msSaveOrOpenBlob( blob, filename);
+    }else{
+        // Create a link to the file
+        downloadLink.href = 'data:' + dataType + ', ' + tableHTML;
+    
+        // Setting the file name
+        downloadLink.download = filename;
+        
+        //triggering the function
+        downloadLink.click();
+    }
+}
     
   </script>
 
