@@ -100,7 +100,7 @@
 			
 			document.getElementById("submit").addEventListener("click", function(event){
 				event.preventDefault();
-				clearLocal();
+				window.localStorage.clear();
 				
 				var name  = document.getElementById('name').value.trim();
 				var age = document.getElementById('age').value.trim();
@@ -118,6 +118,9 @@
 							}
 
 				setLocal('user',value);
+				setLocal('time',0);
+				setLocal('trial',0);
+
 				
 				if(capacha_type == 'easy'){
 					window.location.href = "a.html";

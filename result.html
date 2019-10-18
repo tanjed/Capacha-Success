@@ -16,7 +16,7 @@
 <div class="container">
   
 
-    Name: <span id="name"></span> || Age: <span id="age"></span> || Type: <span id="type"></span> || CAPTCHA Type: <span id="capacha_type"></span> || Mobility Problem: <span id="mobility_problem"></span> || Vision Problem: <span id="vision_problem"></span> <br><b><i>Time Taken: <span id="seconds"></span> Sec</i></b> <br> <br>
+    Name: <span id="name"></span> || Age: <span id="age"></span> || Type: <span id="type"></span> || CAPTCHA Type: <span id="capacha_type"></span> || Mobility Problem: <span id="mobility_problem"></span> || Vision Problem: <span id="vision_problem"></span> <br><b><i>Time Taken: <span id="time"></span> Sec</i></b> <br><b><i> Tired: <span id="try"></span></i></b><br><br>
 		<table class="table table-dark" id="resultTable">
   <thead>
     <tr><td colspan="17" style="text-align: center;display: none;"><span id="user_name"></span></td></tr>
@@ -71,12 +71,16 @@
  <script src="personal_lib.js"></script>
 
   <script type="text/javascript">
+    console.log(localStorage);
 
    setData(getLocal('user'));
 
+    $('#time').html(getLocal('time'));
+    $('#try').html(getLocal('trial'));
+
    var user_name = getLocal('user').name;
    $('#user_name').html(user_name);
-   setData(getLocal('time'));
+   
 
    $("#export").click(function(){
       exportTableToExcel('resultTable', user_name );

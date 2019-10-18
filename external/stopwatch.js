@@ -2,9 +2,15 @@ var h1 = document.getElementsByTagName('h1')[0],
     start = document.getElementById('start'),
     stop = document.getElementById('stop'),
     clear = document.getElementById('clear'),
-    seconds = 0, minutes = 0, hours = 0,
-    total_time_in_second = 0,
+     minutes = 0, hours = 0,
     t;
+var total_time_in_second = parseInt(getLocal('time'));
+var seconds = parseInt(getLocal('time'));
+
+function getLocal(key){
+    var data = window.localStorage.getItem(key);
+    return JSON.parse(data);
+}
 
 function add() {
     seconds++;
@@ -60,7 +66,7 @@ function stopWatchstop(){
 }
  function stopWatchreset(){
     clearTimeout(t);
-    h1.textContent = "00:00:00";
-    seconds = 0; minutes = 0; hours = 0, total_time_in_second = 0;
+    // h1.textContent = "00:00:00";
+    // seconds = 0; minutes = 0; hours = 0, total_time_in_second = 0;
     //clearAll();
  }
