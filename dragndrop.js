@@ -10,8 +10,8 @@ function allowDrop(ev)
 
 function dragStart(ev)
 {
-	id = ev.target.id;
 	
+	id = ev.target.id;
 }
 
 function drop(ev){	
@@ -19,18 +19,18 @@ function drop(ev){
 	drop_count++;
 	ev.target.append(document.getElementById(id));
 	pushArray('coordinate'+drop_count);	
-	console.log(localStorage);
-	
+	co_ordinates.splice(0, co_ordinates.length);
+		
 }
 
 function dragging(ev){
-	var x = event.clientX;     // Get the horizontal coordinate
-	var y = event.clientY;     // Get the vertical coordinate
+	 var x = event.clientX;     // Get the horizontal coordinate
+	 var y = event.clientY;     // Get the vertical coordinate
 	co_ordinates.push({"x":x , "y":y});
 	intervel = elementSpacing(co_ordinates.length);
 }
 function elementSpacing(length){
-	return Math.ceil(length/15);
+	return Math.ceil(length/20);
 }
 function pushArray(key){
 	var co_ordinate_points = [];

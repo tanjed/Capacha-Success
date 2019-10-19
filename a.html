@@ -110,21 +110,24 @@
 				stopWatchstop();
 
 				alert("Successful");
-				setLocal('time',total_time_in_second);
+				
 				stopWatchreset();
 
-				window.location.href = 'result.html';
+				
 				
 			}
 			else {
-				for(var i = 1; i<=4 ; i++){
-					clearLocal('coordinate'+i);
-				}
+				// for(var i = 1; i<=4 ; i++){
+				// 	clearLocal('coordinate'+i);
+				// }
 				alert("CAPTCHA not matched. Try Again !!");
-				retryCaptcha();
-				trial+=1;
-				setLocal('trial',trial);
+				
+				
 			}
+			setLocal('time',total_time_in_second);
+			window.location.href = 'result.html';
+			trial+=1;
+			setLocal('trial',trial);
 			
 		}
 	</script>
