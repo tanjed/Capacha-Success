@@ -19,6 +19,7 @@ function drop(ev){
 	drop_count++;
 	ev.target.append(document.getElementById(id));
 	pushArray('coordinate'+drop_count);	
+	console.log(co_ordinates);
 	co_ordinates.splice(0, co_ordinates.length);
 		
 }
@@ -34,7 +35,10 @@ function elementSpacing(length){
 }
 function pushArray(key){
 	var co_ordinate_points = [];
-	for(var i = 0; i<co_ordinates.length; i+=intervel ){
+	for(var i = 0; i<co_ordinates.length; i++ ){
+		// if(i <= co_ordinates.length-5){
+		// 	continue;
+		// }
 		co_ordinate_points.push(co_ordinates[i]);
 	}
 	return window.localStorage.setItem(key,JSON.stringify(co_ordinate_points));
