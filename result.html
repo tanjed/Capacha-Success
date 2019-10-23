@@ -117,6 +117,7 @@
 
   <script type="text/javascript">
     console.log(localStorage);
+    var coordinate_length = [];
 
    setData(getLocal('user'));
 
@@ -131,19 +132,16 @@
       exportTableToExcel('resultTable', user_name );
   });
 
-  for(var i = 1; i<=60; i++){
-    $('#table_head').append('<th>'+i+'</th>');
-  }
-
   
    for(var i = 1; i<=4; i++){
     var coordinates = getLocal('coordinate'+i);
+    coordinate_length.push(coordinates.length);
     if (coordinates === null) {
       break;
     }
     var temp = $("#tbody").append($('<tr>'));
         temp.append($('<td>').html(i)).append('<td>x <br> y</td>');
-      for(var j=0;j<60;j++){
+      for(var j=0;j<coordinates.length;j++){
           if(!!coordinates[j]){
             temp.append($('<td>').html(coordinates[j].x+'<br>'+coordinates[j].y));
           }else{
@@ -151,6 +149,10 @@
           }
       }
    }
+    for(var i = 1; i<=Math.max(...coordinate_length); i++){
+    $('#table_head').append('<th>'+i+'</th>');
+  }
+ 
        
   </script>
 
